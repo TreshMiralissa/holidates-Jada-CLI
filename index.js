@@ -26,6 +26,6 @@ figlet('Holidates !', function(err, data) {
 response.then(datas => {
 
     for (let d of datas.data) {
-        console.log(chalk.cyan(`${d.date}:`), chalk.yellow(`${d.name}`), chalk.magenta(`- aka - ${d.localName}`));
+        console.log(chalk.green(`${d.date}: ${d.name} - aka - ${d.localName}`));
     }
 });
