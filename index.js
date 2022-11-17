@@ -6,15 +6,30 @@ import figlet from 'figlet';
 
 const country = process.argv[2];
 const countryCode = countryList.getCode(country);
-const year = new Date().getFullYear();
+const yearInput = process.argv[3];
 
-async function getCountryCodeAsync(year, countryCode) {
-    return await axios.get(`https://date.nager.at/api/v3/PublicHolidays/${year}/${countryCode}`);
+function year(yearInput){
+    let givenYear;
+
+    if (yearInput){
+        givenYear = process.argv[3]
+    }
+    else{
+        givenYear =new Date().getFullYear();
+    }
+
+    return givenYear
 }
 
-const response = getCountryCodeAsync(year, countryCode);
 
-figlet('Holidates !', function(err, data) {
+async function getCountryCodeAsync(yearInput, countryCode) {
+    return await axios.get(`https://date.nager.at/api/v3/PublicHolidays/${yearInput}/${countryCode}`);
+}
+
+const response = getCountryCodeAsync(yearInput, countryCode);
+
+figlet('Holidates !', 
+function(err, data) {
     if (err) {
         console.log('Something went wrong...');
         console.dir(err);
