@@ -8,6 +8,7 @@ const country = process.argv[2];
 const countryCode = countryList.getCode(country);
 const yearInput = process.argv[3];
 
+
 function year(yearInput){
     let givenYear;
 
@@ -20,13 +21,13 @@ function year(yearInput){
 
     return givenYear
 }
-
+const givenYear = year(yearInput)
 
 async function getCountryCodeAsync(yearInput, countryCode) {
     return await axios.get(`https://date.nager.at/api/v3/PublicHolidays/${yearInput}/${countryCode}`);
 }
 
-const response = getCountryCodeAsync(yearInput, countryCode);
+const response = getCountryCodeAsync(givenYear, countryCode);
 
 figlet('Holidates !', 
 function(err, data) {
@@ -39,7 +40,6 @@ function(err, data) {
 });
 
 response.then(datas => {
-
     for (let d of datas.data) {
         console.log(chalk.green(`${d.date}: ${d.name} - aka - ${d.localName}`));
     }
