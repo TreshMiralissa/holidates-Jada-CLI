@@ -1,5 +1,5 @@
 {
-  "name": "holidates-jada-cli",
+  "name": "@treshmiralissa/holidates",
   "version": "1.0.0",
   "description": "Becode project to display the holiday dates from each country.",
   "main": "index.js",
